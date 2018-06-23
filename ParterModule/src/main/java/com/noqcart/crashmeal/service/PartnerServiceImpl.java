@@ -3,10 +3,8 @@ package com.noqcart.crashmeal.service;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.noqcart.crashmeal.model.Availability;
 import com.noqcart.crashmeal.model.BankDetail;
 import com.noqcart.crashmeal.model.Outlet;
