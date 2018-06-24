@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,7 +20,7 @@ public class Availability {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="AvailabilityId")
+	@Column(name="AVAILABILITY_ID")
 	private Long availabilityId;
 	private String monday;
 	private String tuesday;
@@ -27,7 +30,10 @@ public class Availability {
 	private String saturday;
 	private String sunday;
 
-	@OneToMany
+	@OneToMany//(mappedBy="availability")
+	@JoinTable(name="AVAILABILITY_TIMETABLE",joinColumns=@JoinColumn(name="AVAILALILITY_ID"),
+				inverseJoinColumns=@JoinColumn(name="TIMETABLE_ID")
+			)
 	private List<TimeTable> timeTable = new ArrayList<TimeTable>();
 
 	public Long getAvailabilityId() {

@@ -1,6 +1,7 @@
 package com.noqcart.crashmeal.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class Outlet {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="OUTLET_ID")
 	private Long outletId;
 	private String email;
 	private String phoneNumber;
@@ -32,6 +34,7 @@ public class Outlet {
 	private String partnerLogo;
 	
 	@OneToOne
+	@JoinColumn(name="AVAILABILITY_ID")
 	private Availability availability;
 	
 	private String contactPersonName;
@@ -40,6 +43,7 @@ public class Outlet {
 	private String partnerPaymentType;
 	
 	@OneToOne
+	@JoinColumn(name="BANKDETAIL_ID")
 	private BankDetail bankDetail;
 	
 	//@ManyToOne(cascade=CascadeType.ALL)

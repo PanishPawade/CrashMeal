@@ -9,6 +9,7 @@ import com.noqcart.crashmeal.model.Availability;
 import com.noqcart.crashmeal.model.BankDetail;
 import com.noqcart.crashmeal.model.Outlet;
 import com.noqcart.crashmeal.model.Partner;
+import com.noqcart.crashmeal.model.TimeTable;
 import com.noqcart.crashmeal.repository.AvailabilityRepository;
 import com.noqcart.crashmeal.repository.BankDetailRepository;
 import com.noqcart.crashmeal.repository.OutletRepository;
@@ -48,10 +49,22 @@ public class PartnerServiceImpl {
 		System.out.println("=========================================");
 		
 		partnerRepository.save(partner);
-		outletRepository.save(partner.getOutlets().get(0));
-		bankDetailRepository.save(partner.getOutlets().get(0).getBankDetail());
-		availabilityRepository.save(partner.getOutlets().get(0).getAvailability());
-		timeTableRepository.save(partner.getOutlets().get(0).getAvailability().getTimeTable().iterator().next());
+		
+		List<Outlet> outlets = partner.getOutlets();
+
+		
+		for(Outlet outlet : outlets){
+			outletRepository.save(outlet);
+			bankDetailRepository.save(outlet.getBankDetail());
+			availabilityRepository.save(outlet.getAvailability());
+			
+			Availability availability = outlet.getAvailability();
+			List<TimeTable> timeTables = availability.getTimeTable();
+			
+			for(TimeTable timeTable: timeTables){
+				timeTableRepository.save(timeTable);
+			}
+		}
 	}
 	
 	private Partner preparePartner(){

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GeneratorType;
@@ -22,6 +24,11 @@ public class TimeTable {
 	private String fromTime;
 	@Column(name="TOTIME")
 	private String toTime;
+	
+	//@ManyToOne
+	//@JoinColumn(name="AVAILABILITY_ID")
+	//private Availability availability;
+	
 	public Long getTimeTableId() {
 		return timeTableId;
 	}
@@ -40,4 +47,10 @@ public class TimeTable {
 	public void setToTime(String toTime) {
 		this.toTime = toTime;
 	}
+/*	public Availability getAvailability() {
+		return availability;
+	}
+	public void setAvailability(Availability availability) {
+		this.availability = availability;
+	}*/
 }

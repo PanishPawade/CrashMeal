@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,11 +20,14 @@ public class Partner {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="PartnerId")
+	@Column(name="PARTNER_ID")
 	private Long partnerId;
 	private String partnerName;
 	
 	@OneToMany
+	@JoinTable(name="PARTNER_OUTLETS", joinColumns=@JoinColumn(name="PARTNER_ID"),
+		inverseJoinColumns=@JoinColumn(name="OUTLET_ID")
+			)
 	private List<Outlet> outlets = new ArrayList<Outlet>(); 
 	
 	public Long getPartnerId() {
